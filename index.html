@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Ishara & Heshani</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #fcf9f5; color: #4a4a4a; line-height: 1.6; text-align: center; }
+        .hero { padding: 80px 20px; background: linear-gradient(rgba(252,249,245,0.85), rgba(252,249,245,0.85)), url('https://unsplash.com') no-repeat center center/cover; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        h1 { font-family: 'Alex Brush', cursive; font-size: 4.5rem; color: #b8926a; margin-bottom: 10px; font-weight: 400; }
+        h2 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 4px; color: #8c8c8c; margin-bottom: 30px; }
+        .welcome-msg { max-width: 600px; margin: 0 auto 40px auto; font-size: 1.1rem; font-weight: 300; font-style: italic; color: #666; padding: 0 20px; }
+        .rsvp-section { background-color: #ffffff; max-width: 500px; margin: -50px auto 80px auto; padding: 40px 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eaeaea; position: relative; z-index: 10; }
+        .rsvp-section h3 { font-size: 1.5rem; font-weight: 400; letter-spacing: 2px; color: #333; margin-bottom: 25px; text-transform: uppercase; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: #777; }
+        input[type="text"], input[type="tel"] { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 1rem; transition: border 0.3s; background-color: #fafafa; }
+        input:focus { outline: none; border-color: #b8926a; background-color: #fff; }
+        .btn-submit { width: 100%; padding: 14px; background-color: #b8926a; color: #fff; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
+        .btn-submit:hover { background-color: #a37f59; }
+        footer { margin-bottom: 40px; font-size: 0.85rem; color: #aaa; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>Ishara & Heshani</h1>
+        <h2>Are Getting Married</h2>
+        <p class="welcome-msg">
+            "Welcome to our wedding celebration! We are incredibly blessed to have you in our lives and cannot wait to share our special day with the people we love most. Please let us know if you can make it by filling out the form below."
+        </p>
+    </div>
+
+    <div class="rsvp-section">
+        <h3>Confirm Your Visit</h3>
+        
+        <!-- REPLACE THE ACTION URL BELOW WITH YOUR FORMSPREE/FORMSPARK URL -->
+        <form action="https://formspree.io" method="POST">
+            <div class="form-group">
+                <label for="name">Your Full Name</label>
+                <input type="text" id="name" name="Guest Name" placeholder="e.g., John Doe" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Contact Number</label>
+                <input type="tel" id="phone" name="Contact Number" placeholder="e.g., +1 234 567 890" required>
+            </div>
+            
+            <button type="submit" class="btn-submit">Confirm Attendance</button>
+        </form>
+    </div>
+
+    <footer>
+        Thank you for celebrating with us • 2026
+    </footer>
+
+</body>
+</html>
