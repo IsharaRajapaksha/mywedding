@@ -3,60 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation | Ishara & Heshani</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Montserrat', sans-serif; background-color: #fcf9f5; color: #4a4a4a; line-height: 1.6; text-align: center; }
-        .hero { padding: 80px 20px; background: linear-gradient(rgba(252,249,245,0.85), rgba(252,249,245,0.85)), url('https://unsplash.com') no-repeat center center/cover; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        h1 { font-family: 'Alex Brush', cursive; font-size: 4.5rem; color: #b8926a; margin-bottom: 10px; font-weight: 400; }
-        h2 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 4px; color: #8c8c8c; margin-bottom: 30px; }
-        .welcome-msg { max-width: 600px; margin: 0 auto 40px auto; font-size: 1.1rem; font-weight: 300; font-style: italic; color: #666; padding: 0 20px; }
-        .rsvp-section { background-color: #ffffff; max-width: 500px; margin: -50px auto 80px auto; padding: 40px 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eaeaea; position: relative; z-index: 10; }
-        .rsvp-section h3 { font-size: 1.5rem; font-weight: 400; letter-spacing: 2px; color: #333; margin-bottom: 25px; text-transform: uppercase; }
-        .form-group { margin-bottom: 20px; text-align: left; }
-        label { display: block; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: #777; }
-        input[type="text"], input[type="tel"] { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 1rem; transition: border 0.3s; background-color: #fafafa; }
-        input:focus { outline: none; border-color: #b8926a; background-color: #fff; }
-        .btn-submit { width: 100%; padding: 14px; background-color: #b8926a; color: #fff; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
-        .btn-submit:hover { background-color: #a37f59; }
-        footer { margin-bottom: 40px; font-size: 0.85rem; color: #aaa; letter-spacing: 1px; }
-    </style>
+    <title>Heshani & Ishara - Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+	<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="hero">
-        <h1>Ishara & Heshani</h1>
-        <h2>Are Getting Married</h2>
-        <p class="welcome-msg">
-            "Welcome to our wedding celebration! We are incredibly blessed to have you in our lives and cannot wait to share our special day with the people we love most. Please let us know if you can make it by filling out the form below."
-        </p>
-    </div>
+    <header class="hero">
+        <div class="hero-content">
+            <p>We are getting married</p>
+            <h1  class="script-font" style="font-size: 8rem; margin-bottom: 10px;">Heshani & Ishara</h1>
+            <p>Save Our Date</p>
+        </div>
+    </header>
 
-    <div class="rsvp-section">
-        <h3>Confirm Your Visit</h3>
-        
-        <!-- REPLACE THE ACTION URL BELOW WITH YOUR FORMSPREE/FORMSPARK URL -->
-        <form action="https://formspree.io" method="POST">
-            <div class="form-group">
-                <label for="name">Your Full Name</label>
-                <input type="text" id="name" name="Guest Name" placeholder="e.g., John Doe" required>
+    <main class="container">
+
+        <section class="card">
+            <p class="greeting">
+                Together with our families, we invite you to share in our joy as we exchange wedding vows and begin our new life together. Your presence and blessings on our special day would mean the world to us.
+            </p>
+
+			<h2 class="script-font" style="font-size: 3rem; margin-bottom: 10px;">Counting Down to the Big Day</h2>
+            <div class="countdown" id="countdown">
+                <div class="time-box"><span id="days">00</span><label>Days</label></div>
+                <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
+                <div class="time-box"><span id="minutes">00</span><label>Mins</label></div>
+                <div class="time-box"><span id="seconds">00</span><label>Secs</label></div>
             </div>
-            
-            <div class="form-group">
-                <label for="phone">Contact Number</label>
-                <input type="tel" id="phone" name="Contact Number" placeholder="e.g., +1 234 567 890" required>
+        </section>
+		
+		<section class="card">
+			<div class="couple-grid">
+				<!-- Title placed inside grid -->
+				<h2 class="script-font couple-title">The Bride & Groom</h2>
+				
+				<!-- Bride Card -->
+				<div class="couple-card bride-card">
+					<h3>Heshani</h3>
+					<p class="parents-title">Daughter of</p>
+					<p>Mr. K. W. G. T. R. B. Koralewaththa</p>
+					<p>& Mrs. R. M. Prasadini Rathnayaka</p>
+				</div>
+
+				<!-- Clipart Divider -->
+				<div class="clipart-divider">
+					<div class="clipart-container">
+						<img src="clip.jpg" alt="Wedding Rings Clipart" class="clipart-img">
+					</div>
+				</div>
+
+				<!-- Groom Card -->
+				<div class="couple-card groom-card">
+					<h3>Ishara</h3>
+					<p class="parents-title">Son of</p>
+					<p>Mr. R. M. M. B. Rajapaksha</p>
+					<p>& Mrs. A. A. R. K. Athauda</p>
+				</div>
+			</div>
+		</section>
+
+        <section class="card">
+            <h2 class="script-font" style="font-size: 3rem; margin-bottom: 10px;">Wedding Date & Time</h2>
+            <p style="color: var(--text-muted); margin-top: 5px;">Join us on our special day</p>
+
+            <div class="calendar-box">
+                <div class="calendar-header">OCTOBER 2026</div>
+                <div class="calendar-grid">
+                    <div class="day-name">S</div>
+                    <div class="day-name">M</div>
+                    <div class="day-name">T</div>
+                    <div class="day-name">W</div>
+                    <div class="day-name">T</div>
+                    <div class="day-name">F</div>
+                    <div class="day-name">S</div>
+                    
+                    <!-- October 1, 2026 starts on Thursday -->
+                    <div class="date" style="grid-column: 5;">1</div>
+                    <div class="date">2</div><div class="date">3</div>
+                    <div class="date">4</div><div class="date">5</div><div class="date">6</div><div class="date">7</div><div class="date">8</div><div class="date">9</div><div class="date">10</div>
+                    <div class="date">11</div><div class="date">12</div><div class="date">13</div><div class="date">14</div><div class="date">15</div><div class="date">16</div><div class="date">17</div>
+                    <div class="date wedding-day">18</div><div class="date">19</div><div class="date">20</div><div class="date">21</div><div class="date">22</div><div class="date">23</div><div class="date">24</div>
+                    <div class="date">25</div><div class="date">26</div><div class="date">27</div><div class="date">28</div><div class="date">29</div><div class="date">30</div><div class="date">31</div>
+                </div>
             </div>
-            
-            <button type="submit" class="btn-submit">Confirm Attendance</button>
-        </form>
-    </div>
 
-    <footer>
-        Thank you for celebrating with us • 2026
-    </footer>
+            <div class="ceremony-badge">
+                Poruwa Ceremony: 09:15 AM
+            </div>
+        </section>
 
+        <section class="card">
+            <h2 class="script-font" style="font-size: 3rem; margin-bottom: 10px;">Ceremony Venue</h2>
+            <p style="font-weight: 500; font-size: 1.1rem; margin-top: 10px;">Asliya Goldern Cassandra</p>
+            <p style="color: var(--text-muted);">Dambokka, Kurunegala</p>
+
+            <div class="map-container">
+                
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.282441303506!2d80.33976857500139!3d7.433966292576842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae33ba4acb686e9%3A0x4133679c8fdf897c!2sAsliya%20Golden%20Cassandra!5e0!3m2!1sen!2skr!4v1788179444123!5m2!1sen!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+				
+            </div>
+        </section>
+
+        <section class="card">
+            <h2  class="script-font" style="font-size: 3rem; margin-bottom: 10px;">RSVP</h2>
+            <p style="color: var(--text-muted); margin-bottom: 25px;">Please confirm your attendance</p>
+
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="fullName">Your Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="attendance">Will you be attending?</label>
+                    <select id="attendance" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="attending">Joyfully Accept</option>
+                        <option value="not_attending">Regretfully Decline</option>
+                        <option value="attending_with_guest">Attending with Guest (+1)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialNeeds">Special Needs / Dietary Requirements</label>
+                    <textarea id="specialNeeds" rows="3" placeholder="Vegetarian, allergies, accessibility needs, etc."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Confirm RSVP</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2 class="script-font" style="font-size: 3rem; color: var(--accent-gold);">Thank You</h2>
+            <p class="closing-message">
+                "Your love, support, and presence mean the world to us as we embark on this beautiful new journey together. We cannot wait to celebrate our love with you!"
+            </p>
+            <p style="margin-top: 15px; font-weight: 600; color: var(--text-dark);">— With love, Heshani & Ishara —</p>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>

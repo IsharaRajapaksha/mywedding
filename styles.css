@@ -1,0 +1,675 @@
+:root {
+    --bg-cream: #FDFBF7;
+    --card-cream: #F7F3EC;
+    --accent-gold: #D4AF37;       /* Bright, rich gold */
+    --clear-gold: #E6CA65;        /* Clear gold for borders */
+    --dark-gold: #B8860B;         /* Deep gold for main body text */
+    --white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--dark-gold);      /* Changed main body text to gold */
+    line-height: 1.6;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: var(--accent-gold);     /* Changed headers to gold */
+}
+
+.script-font {
+    font-family: 'Great Vibes', cursive;
+    color: var(--accent-gold);
+    font-weight: 400;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.card {
+    background: var(--card-cream);
+    border: 1.5px solid var(--clear-gold); /* Clear gold border */
+    border-radius: 12px;
+    padding: 40px 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;		
+	background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+                url('cover.jpg') center/cover no-repeat;
+    color: var(--white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+    margin-bottom: 10px;
+    line-height: 1.1;
+    color: var(--white);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.greeting {
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin: 0 auto 30px auto;
+    color: var(--dark-gold);
+}
+
+/* Countdown */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.time-box {
+    background: var(--white);
+    border: 1px solid var(--clear-gold); /* Clear gold border */
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 80px;
+}
+
+.time-box span {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    font-family: 'Playfair Display', serif;
+}
+
+.time-box label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dark-gold);
+}
+
+/* Couple Section */
+.couple-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.couple-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--clear-gold); /* Clear gold border */
+}
+
+.couple-card h3 {
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    margin-bottom: 10px;
+}
+
+.parents-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dark-gold);
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+/* Calendar */
+.calendar-box {
+    background: var(--white);
+    max-width: 350px;
+    margin: 20px auto;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid var(--clear-gold); /* Clear gold border */
+}
+
+.calendar-header {
+    font-weight: 600;
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+/* Center grid items and maintain proportional sizing */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    font-size: 0.95rem;
+    align-items: center;
+    justify-items: center;
+}
+
+/* Base date styling with forced equal width and height */
+.date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;            /* Fixed width for a perfect base */
+    height: 36px;           /* Fixed height equal to width */
+    border-radius: 50%;     /* Creates a perfect symmetrical circle */
+    color: var(--dark-gold);
+    margin: 0 auto;
+}
+
+/* Symmetrical highlighted circle with smooth slow blinking */
+.wedding-day {
+    background: var(--accent-gold);
+    color: var(--white);
+    font-weight: bold;
+    position: relative;
+    border-radius: 50%;
+    /* Smooth, subtle glow animation */
+    animation: slowBlink 2.5s infinite ease-in-out;
+}
+
+/* Heart indicator position adjustment */
+.wedding-day::after {
+    content: '♥';
+    position: absolute;
+    top: -4px;
+    right: -2px;
+    font-size: 0.65rem;
+    color: var(--dark-gold);
+}
+
+/* Smooth blinking animation that preserves the perfect circle */
+@keyframes slowBlink {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 0px rgba(212, 175, 55, 0);
+    }
+    50% {
+        opacity: 0.55;
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+    }
+}
+
+
+
+
+
+@keyframes slowBlink {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 0px rgba(212, 175, 55, 0);
+    }
+    50% {
+        opacity: 0.4;
+        transform: scale(1.08);
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.8);
+    }
+}
+
+.ceremony-badge {
+    display: inline-block;
+    background: var(--white);
+    border: 1px solid var(--clear-gold); /* Clear gold border */
+    color: var(--accent-gold);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
+
+/* Map */
+.map-container {
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--clear-gold); /* Clear gold border */
+    margin-top: 20px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 300px;
+    border: 0;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--dark-gold);
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--clear-gold); /* Clear gold border */
+    border-radius: 6px;
+    background: var(--white);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--dark-gold);
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+
+.btn-submit {
+    background: var(--accent-gold);
+    color: var(--white);
+    border: none;
+    padding: 14px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn-submit:hover {
+    background: var(--dark-gold);
+}
+
+/* Footer Message */
+.closing-message {
+    font-style: italic;
+    color: var(--dark-gold);
+    font-size: 1.05rem;
+    margin-top: 20px;
+}
+
+/* Responsive layout for mobile screens */
+/* MOBILE LAYOUT ORDER: Title (1) -> Clipart (2) -> Heshani (3) -> Ishara (4) */
+@media (max-width: 768px) {
+    .couple-grid {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .couple-title {
+        order: 1;
+        margin-bottom: 0;
+    }
+
+    .clipart-divider {
+        order: 2;
+    }
+
+    .bride-card {
+        order: 3;
+        width: 100%;
+    }
+
+    .groom-card {
+        order: 4;
+        width: 100%;
+    }
+
+    .couple-card {
+        padding: 20px 15px;
+    }
+}
+
+/* */
+ /* 1. Reduce overall padding inside the card */
+.card {
+    background: var(--card-cream);
+    border: 1.5px solid var(--clear-gold);
+    border-radius: 12px;
+    padding: 25px 20px; /* Reduced top/bottom padding from 40px to 25px */
+    margin-bottom: 30px; /* Reduced bottom margin from 40px to 30px */
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+}
+
+/* 2. Increase calendar width and reduce vertical margins */
+.calendar-box {
+    background: var(--white);
+    max-width: 500px; /* Increased width from 350px to 500px to spread dates evenly */
+    width: 100%;
+    margin: 15px auto; /* Reduced vertical margins */
+    border-radius: 8px;
+    padding: 15px; /* Reduced padding from 20px to 15px */
+    border: 1px solid var(--clear-gold);
+}
+
+.calendar-header {
+    font-weight: 600;
+    color: var(--accent-gold);
+    margin-bottom: 10px; /* Reduced spacing under the month title */
+    font-size: 1.1rem;
+}
+
+/* 3. Adjust grid column gap and row spacing */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px; /* Reduced gap between numbers */
+    font-size: 0.95rem;
+}
+
+.date {
+    padding: 6px 0; /* Reduced top/bottom padding from 8px to 6px */
+    border-radius: 50%;
+    color: var(--dark-gold);
+}
+
+/* 4. Make the ceremony badge more compact */
+.ceremony-badge {
+    display: inline-block;
+    background: var(--white);
+    border: 1px solid var(--clear-gold);
+    color: var(--accent-gold);
+    padding: 8px 18px; /* Reduced padding from 10px 20px to 8px 18px */
+    border-radius: 50px;
+    font-weight: 600;
+    margin-top: 10px; /* Reduced top margin from 15px to 10px */
+    font-size: 1rem;
+}
+
+
+/* clip art */
+
+/* Container for the clipart image */
+.clipart-container {
+    position: relative;
+    width: 190px;
+    height: 190px;
+    margin: 15px auto 25px auto;
+    border-radius: 50%;
+    padding: 3px; /* Space for the animated border */
+    background: #D4AF37; /* Base gold color */
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); /* Gold ambient glow */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Moving bright spot across the border path */
+.clipart-container::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: conic-gradient(
+        transparent 0deg,
+        transparent 280deg,
+        #FFFFFF 330deg, /* Bright white light spot */
+        #FFF8DC 360deg  /* Warm gold accent */
+    );
+    animation: rotateBorder 3.5s linear infinite;
+}
+
+/* Clipart image element */
+.clipart-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: var(--white);
+    border-radius: 50%;
+    padding: 12px;
+}
+
+/* Border light rotation animation */
+@keyframes rotateBorder {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+/*  raw couple grid */ 
+
+/* Flex layout to keep all 3 elements in a single horizontal row */
+.couple-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Minimal, clean spacing between cards */
+    margin-top: 25px;
+    width: 100%;
+}
+
+/* Flex sizing to ensure equal-width cards */
+.couple-card {
+    flex: 1;
+    background: var(--white);
+    padding: 25px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--clear-gold);
+    min-width: 0; /* Prevents overflow inside flex containers */
+}
+
+/* Center clipart styling */
+.clipart-divider {
+    flex: 0 0 auto; /* Keeps the clipart at a fixed size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clipart-container {
+    position: relative;
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    padding: 3px;
+    background: var(--accent-gold);
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Smooth rotating light spot on border */
+.clipart-container::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: conic-gradient(
+        transparent 0deg,
+        transparent 270deg,
+        #FFFFFF 320deg,
+        #FFF8DC 360deg
+    );
+    animation: rotateBorder 3s linear infinite;
+}
+
+.clipart-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: var(--white);
+    border-radius: 50%;
+    padding: 8px;
+}
+
+@keyframes rotateBorder {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .couple-grid {
+        gap: 8px; /* Tighter gap on smaller screens */
+    }
+    
+    .couple-card {
+        padding: 15px 8px;
+    }
+
+    .clipart-container {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+/* Title inside grid styling */
+.couple-title {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+/* Desktop Grid/Flex Layout (Title Top, then Row below) */
+.couple-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.couple-card {
+    flex: 1;
+    background: var(--white);
+    padding: 25px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--clear-gold);
+    min-width: 0;
+}
+
+.clipart-divider {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clipart-container {
+    position: relative;
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    padding: 3px;
+    background: var(--accent-gold);
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clipart-container::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: conic-gradient(
+        transparent 0deg,
+        transparent 270deg,
+        #FFFFFF 320deg,
+        #FFF8DC 360deg
+    );
+    animation: rotateBorder 3s linear infinite;
+}
+
+.clipart-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: var(--white);
+    border-radius: 50%;
+    padding: 8px;
+}
+
+@keyframes rotateBorder {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* MOBILE LAYOUT ORDER: Title (1) -> Clipart (2) -> Heshani (3) -> Ishara (4) */
+@media (max-width: 768px) {
+    .couple-grid {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .couple-title {
+        order: 1;
+        margin-bottom: 0;
+    }
+
+    .clipart-divider {
+        order: 2;
+    }
+
+    .bride-card {
+        order: 3;
+        width: 100%;
+    }
+
+    .groom-card {
+        order: 4;
+        width: 100%;
+    }
+
+    .couple-card {
+        padding: 20px 15px;
+    }
+}
