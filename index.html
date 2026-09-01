@@ -8,10 +8,10 @@
     :root {
       /* Palette: Rich Cream & Warm Gold Accents */
       --cream-bg: radial-gradient(circle at 50% 50%, #faf6ee 0%, #ebe0cf 50%, #d4c1a7 100%);
-      --linen-pocket: #f5edd8;
-      --linen-flap: #fffaf0;
+      --cream-envelope-pocket: #f4ebd9;
+      --cream-envelope-flap: #fbf5e8;
       --parchment-white: #ffffff;
-      --gold-accent: #c49a45;
+      --gold-accent: #e6c275;
       --gold-border: #d4af37;
     }
 
@@ -62,24 +62,18 @@
       transform: translateY(-4px) rotateX(4deg);
     }
 
-    /* Embossed Cream & Rich Gold Pattern SVG */
-    .embossed-gold-pattern {
-      background-color: var(--linen-pocket);
-      background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 0l8 8-8 8-8-8z' fill='%23c49a45' fill-opacity='0.18'/%3E%3Cpath d='M8 2l6 6-6 6-6-6z' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='8' cy='8' r='1.5' fill='%23d4af37' fill-opacity='0.5'/%3E%3C/svg%3E");
-    }
-
     /* Interior Envelope Wall */
     .envelope-back {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: #dfcdb5;
+      background: #e3d3bd;
       border-radius: 6px;
-      box-shadow: 0 25px 45px rgba(80, 55, 20, 0.35), 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 25px 45px rgba(80, 55, 20, 0.25), 0 5px 15px rgba(0,0,0,0.1);
       z-index: 1;
     }
 
-    /* Whitish Paper Card Inside (Moves UP together with the text inside) */
+    /* Whitish Paper Card Inside */
     .letter {
       position: absolute;
       top: 5%;
@@ -90,7 +84,7 @@
       border-radius: 4px;
       padding: clamp(12px, 4vw, 25px);
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
       border: 1px solid #e8dec8;
       z-index: 2;
       transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1) 1.2s;
@@ -106,7 +100,7 @@
       font-weight: bold;
       letter-spacing: 0.8px;
       line-height: 1.3;
-      color: #9e7527; /* Rich Gold Base */
+      color: #9e7527;
       transition: filter 0.4s ease;
     }
 
@@ -139,32 +133,59 @@
       }
     }
 
-    /* Envelope Pocket with High-Contrast Edges */
+    /* Smooth Cream Envelope Pocket */
     .pocket {
       position: absolute;
       width: 100%;
       height: 100%;
+      background-color: var(--cream-envelope-pocket);
       border-radius: 6px;
       clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 50%);
       z-index: 3;
-      box-shadow: inset 0 3px 6px rgba(255, 255, 255, 0.9), inset 0 -3px 6px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0 -3px 5px rgba(90, 65, 30, 0.25));
+      box-shadow: inset 0 3px 6px rgba(255, 255, 255, 0.8), inset 0 -3px 6px rgba(0, 0, 0, 0.1);
+      filter: drop-shadow(0 -4px 6px rgba(90, 65, 30, 0.15));
       border: 1px solid var(--gold-border);
+      overflow: hidden;
     }
 
-    /* Top Flap with Distinct Shading & Gold Edge */
+    /* Seamless Perahera Image Styling */
+    .perahera-img-bottom {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 88%;
+      height: 42%;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 4;
+      
+      /* Blend image background directly into cream envelope color */
+      mix-blend-mode: multiply;
+      opacity: 0.85;
+
+      /* Softly feather top and side edges to avoid harsh boxes */
+      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%),
+                          linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%);
+      -webkit-mask-composite: source-in;
+      mask-image: linear-gradient(to top, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%),
+                  linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%);
+      mask-composite: intersect;
+    }
+
+    /* Smooth Cream Top Flap */
     .flap {
       position: absolute;
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: var(--linen-flap);
+      background-color: var(--cream-envelope-flap);
       border-radius: 6px;
       clip-path: polygon(0 0, 100% 0, 50% 55%);
       transform-origin: top;
       transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 4;
-      filter: drop-shadow(0 9px 14px rgba(70, 45, 15, 0.35));
+      filter: drop-shadow(0 8px 14px rgba(70, 45, 15, 0.25));
       border-top: 1.5px solid var(--gold-border);
     }
 
@@ -178,7 +199,7 @@
       background: linear-gradient(to right, transparent, rgba(255, 225, 150, 0.9), transparent);
     }
 
-    /* Terracotta Red Wax Seal with Filigree Heart */
+    /* Shiny Red Terracotta Wax Seal with Glint */
     .wax-seal {
       position: absolute;
       top: 45%;
@@ -186,18 +207,43 @@
       transform: translate(-50%, -50%);
       width: clamp(54px, 15vw, 68px);
       height: clamp(54px, 15vw, 68px);
-      background: radial-gradient(circle at 35% 35%, #d9534f 0%, #b8322e 45%, #8b1e1b 85%, #631210 100%);
+      background: radial-gradient(circle at 35% 35%, #ff6b66 0%, #cb2a25 40%, #8b1e1b 80%, #520d0b 100%);
       border-radius: 50%;
       z-index: 5;
       display: flex;
       justify-content: center;
       align-items: center;
       box-shadow: 
-        0 8px 18px rgba(50, 10, 10, 0.45),
-        inset 0 2px 4px rgba(255, 200, 200, 0.5),
-        inset 0 -3px 5px rgba(0, 0, 0, 0.5);
+        0 8px 20px rgba(30, 5, 5, 0.45),
+        inset 0 3px 6px rgba(255, 220, 220, 0.75),
+        inset 0 -4px 6px rgba(0, 0, 0, 0.6);
       transition: opacity 0.4s ease;
-      border: 1px solid rgba(220, 80, 75, 0.4);
+      border: 1px solid rgba(255, 120, 115, 0.6);
+      overflow: hidden;
+    }
+
+    /* Wax Seal Glint Animation */
+    .wax-seal::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 240, 200, 0.45) 50%,
+        rgba(255, 255, 255, 0) 70%
+      );
+      transform: rotate(25deg);
+      animation: sealShine 3.5s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes sealShine {
+      0% { transform: translateY(-100%) rotate(25deg); }
+      20%, 100% { transform: translateY(100%) rotate(25deg); }
     }
 
     .seal-inner-ring {
@@ -206,32 +252,19 @@
       border-radius: 50%;
       border: 2px solid #781816;
       box-shadow: 
-        inset 0 1px 3px rgba(255, 180, 180, 0.4),
-        0 1px 2px rgba(255, 200, 200, 0.3);
+        inset 0 2px 4px rgba(255, 200, 200, 0.6),
+        0 1px 3px rgba(255, 220, 220, 0.4);
       display: flex;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at 40% 40%, #c43b37 0%, #9e2522 70%, #781816 100%);
+      background: radial-gradient(circle at 35% 35%, #d9433e 0%, #a82420 70%, #69110f 100%);
     }
 
     .seal-heart-svg {
       width: clamp(26px, 8vw, 34px);
       height: clamp(26px, 8vw, 34px);
-      filter: drop-shadow(0.5px 1px 0px rgba(255, 190, 190, 0.4)) 
-              drop-shadow(-0.5px -0.5px 0px rgba(40, 5, 5, 0.7));
-    }
-
-    /* Dried Floral Accent Overlay */
-    .flower-accent {
-      position: absolute;
-      top: -35px;
-      right: -25px;
-      width: 110px;
-      height: 140px;
-      pointer-events: none;
-      z-index: 6;
-      opacity: 0.9;
-      filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.18));
+      filter: drop-shadow(1px 1px 1px rgba(255, 210, 210, 0.6)) 
+              drop-shadow(-0.5px -0.5px 0px rgba(30, 0, 0, 0.8));
     }
 
     .click-hint {
@@ -301,6 +334,54 @@
       opacity: 1;
       pointer-events: auto;
     }
+	.perahera-img-bottom {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* --- SIZE & POSITION CONTROL --- */
+  bottom: 8px;            /* Vertical positioning */
+  width: 99%;             /* Adjust width scale (e.g., 70% to 100%) */
+  height: 55%;            /* Max height ratio inside pocket */
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 4;
+
+  /* --- BLENDING & OPACITY --- */
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+
+  /* --- EDGE BLUR / FADE CONTROL --- */
+  /* Top Gradient: starts fading at 70%, fully invisible at 100% */
+  /* Side Gradient: fades in from 0%-10%, fades out from 90%-100% */
+  -webkit-mask-image: 
+    linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%),
+    linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+  -webkit-mask-composite: source-in;
+  
+  mask-image: 
+    linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%),
+    linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+  mask-composite: intersect;
+}
+.perahera-img-bottom {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* --- ADJUST SIZE & POSITION HERE --- */
+  bottom: 0px;            /* Move down closer to the bottom border */
+  width: 95%;             /* Scale width */
+  height: 55%;            /* Scale height */
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 4;
+
+  /* --- BLENDING --- */
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+
+}
   </style>
 </head>
 <body>
@@ -309,15 +390,16 @@
     <div class="container" id="envelopeContainer" onclick="openEnvelope()">
       <div class="envelope-back"></div>
       
-      <!-- Whitish Paper Card Inside -->
       <div class="letter">
         <h1 class="invited-text" id="invitedText">You Are Cordially Invited</h1>
       </div>
       
-      <div class="pocket embossed-gold-pattern"></div>
-      <div class="flap embossed-gold-pattern"></div>
+      <div class="pocket">
+        <img class="perahera-img-bottom" src="pera.png" alt="Wedding Procession Pattern" onerror="this.src='image_d1be30.jpg'">
+      </div>
       
-      <!-- Red Terracotta Wax Seal with Filigree Heart -->
+      <div class="flap"></div>
+      
       <div class="wax-seal">
         <div class="seal-inner-ring">
           <svg class="seal-heart-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -333,17 +415,6 @@
           </svg>
         </div>
       </div>
-
-      <!-- Dried Branch Decorative Overlay -->
-      <svg class="flower-accent" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M90 10 Q50 60 10 110" stroke="#7a6245" stroke-width="2" stroke-linecap="round"/>
-        <path d="M70 35 Q50 30 40 20" stroke="#7a6245" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M50 60 Q35 55 25 45" stroke="#7a6245" stroke-width="1.5" stroke-linecap="round"/>
-        <circle cx="40" cy="20" r="3.5" fill="#faf6ee" stroke="#7a6245" stroke-width="0.5"/>
-        <circle cx="25" cy="45" r="4" fill="#faf6ee" stroke="#7a6245" stroke-width="0.5"/>
-        <circle cx="75" cy="28" r="3" fill="#faf6ee" stroke="#7a6245" stroke-width="0.5"/>
-        <circle cx="60" cy="48" r="3.5" fill="#faf6ee" stroke="#7a6245" stroke-width="0.5"/>
-      </svg>
     </div>
     <div class="click-hint" id="hint">CLICK TO OPEN</div>
   </div>
@@ -364,21 +435,17 @@
       const fadeOverlay = document.getElementById('fade-overlay');
       const invitedText = document.getElementById('invitedText');
 
-      // 1. Open Envelope & Raise Letter together with text inside
       container.classList.add('open');
       hint.style.display = 'none';
 
-      // 2. Add Bright Gold Lightning Sweep 1s after letter is fully raised (2.4s + 1s = 3.4s)
       setTimeout(() => {
         invitedText.classList.add('gold-lightning');
       }, 3400);
 
-      // Start flower rain
       setTimeout(() => {
         startContinuousFlowerRain();
       }, 800);
 
-      // Smooth transition to main.html
       setTimeout(() => {
         fadeOverlay.classList.add('active');
       }, 5500);
