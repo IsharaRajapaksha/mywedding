@@ -6,10 +6,13 @@
   <title>You're Invited!</title>
   <style>
     :root {
-      --bg-color: #f7f4ef;
-      --gold-main: linear-gradient(135deg, #e6ca65 0%, #bf953f 50%, #aa771c 100%);
-      --text-color: #3e3228;
-      --accent-color: #8a631c;
+      /* Palette: Rich Cream & Warm Gold Accents */
+      --cream-bg: radial-gradient(circle at 50% 50%, #faf6ee 0%, #ebe0cf 50%, #d4c1a7 100%);
+      --linen-pocket: #f5edd8;
+      --linen-flap: #fffaf0;
+      --parchment-white: #ffffff;
+      --gold-accent: #c49a45;
+      --gold-border: #d4af37;
     }
 
     * {
@@ -19,7 +22,7 @@
     }
 
     body {
-      background-color: var(--bg-color);
+      background: var(--cream-bg);
       font-family: 'Georgia', serif;
       min-height: 100vh;
       overflow: hidden;
@@ -27,6 +30,15 @@
       justify-content: center;
       align-items: center;
       position: relative;
+      perspective: 1000px;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.65) 0%, transparent 65%);
+      pointer-events: none;
     }
 
     /* ---------------- ENVELOPE STAGE ---------------- */
@@ -35,7 +47,6 @@
       width: min(90vw, 440px);
       aspect-ratio: 44 / 30;
       z-index: 2;
-      transition: opacity 1.5s ease;
     }
 
     .container {
@@ -44,30 +55,43 @@
       height: 100%;
       cursor: pointer;
       transform-style: preserve-3d;
+      transition: transform 0.5s ease;
     }
 
+    .container:hover {
+      transform: translateY(-4px) rotateX(4deg);
+    }
+
+    /* Embossed Cream & Rich Gold Pattern SVG */
+    .embossed-gold-pattern {
+      background-color: var(--linen-pocket);
+      background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 0l8 8-8 8-8-8z' fill='%23c49a45' fill-opacity='0.18'/%3E%3Cpath d='M8 2l6 6-6 6-6-6z' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='8' cy='8' r='1.5' fill='%23d4af37' fill-opacity='0.5'/%3E%3C/svg%3E");
+    }
+
+    /* Interior Envelope Wall */
     .envelope-back {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: #5c4004;
-      border-radius: 8px;
-      box-shadow: 0 15px 35px rgba(138, 99, 28, 0.25);
+      background: #dfcdb5;
+      border-radius: 6px;
+      box-shadow: 0 25px 45px rgba(80, 55, 20, 0.35), 0 5px 15px rgba(0,0,0,0.1);
       z-index: 1;
     }
 
+    /* Whitish Paper Card Inside */
     .letter {
       position: absolute;
       top: 5%;
       left: 4.5%;
       width: 91%;
       height: 90%;
-      background: #ffffff;
-      border-radius: 6px;
+      background: var(--parchment-white);
+      border-radius: 4px;
       padding: clamp(12px, 4vw, 25px);
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      border: 1px solid #f0e6d2;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border: 1px solid #e8dec8;
       z-index: 2;
       transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1) 1.2s;
       display: flex;
@@ -76,62 +100,140 @@
       align-items: center;
     }
 
-    .letter h1 {
-      font-size: clamp(1.1rem, 4.5vw, 1.6rem);
-      color: var(--accent-color);
-      margin-bottom: 8px;
-      font-weight: normal;
-      letter-spacing: 0.5px;
+    /* Initial Animated Text Entry */
+    .invited-text {
+      font-size: clamp(1.25rem, 4.8vw, 1.65rem);
+      font-weight: bold;
+      letter-spacing: 0.8px;
+      line-height: 1.3;
+      color: #78541a;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.8s ease-out 2.2s, transform 0.8s ease-out 2.2s;
     }
 
-    .letter p {
-      font-size: clamp(0.78rem, 3vw, 0.98rem);
-      color: var(--text-color);
-      line-height: 1.4;
-      font-style: italic;
+    /* Active Gold Sweep Animation triggered after delay */
+    .invited-text.gold-lightning {
+      background: linear-gradient(
+        120deg,
+        #78541a 0%,
+        #a67c2e 30%,
+        #ffffff 48%,
+        #fff5bf 52%,
+        #a67c2e 70%,
+        #78541a 100%
+      );
+      background-size: 250% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: drop-shadow(0px 1px 1px rgba(255, 255, 255, 0.8))
+              drop-shadow(0px 0px 10px rgba(212, 175, 55, 0.55));
+      animation: sweepGold 2.2s linear infinite;
     }
 
+    @keyframes sweepGold {
+      0% {
+        background-position: 180% center;
+      }
+      100% {
+        background-position: -80% center;
+      }
+    }
+
+    /* Envelope Pocket with High-Contrast Edges */
     .pocket {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: var(--gold-main);
-      border-radius: 8px;
+      border-radius: 6px;
       clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 50%);
       z-index: 3;
+      box-shadow: inset 0 3px 6px rgba(255, 255, 255, 0.9), inset 0 -3px 6px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0 -3px 5px rgba(90, 65, 30, 0.25));
+      border: 1px solid var(--gold-border);
     }
 
+    /* Top Flap with Distinct Shading & Gold Edge */
     .flap {
       position: absolute;
       top: 0;
       width: 100%;
       height: 100%;
-      background: #aa771c;
-      border-radius: 8px;
+      background-color: var(--linen-flap);
+      border-radius: 6px;
       clip-path: polygon(0 0, 100% 0, 50% 55%);
       transform-origin: top;
       transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 4;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 9px 14px rgba(70, 45, 15, 0.35));
+      border-top: 1.5px solid var(--gold-border);
     }
 
+    .flap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, rgba(255, 225, 150, 0.9), transparent);
+    }
+
+    /* Terracotta Red Wax Seal with Filigree Heart */
     .wax-seal {
       position: absolute;
       top: 45%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: clamp(38px, 12vw, 52px);
-      height: clamp(38px, 12vw, 52px);
-      background: radial-gradient(circle, #b8860b 0%, #745106 100%);
+      width: clamp(54px, 15vw, 68px);
+      height: clamp(54px, 15vw, 68px);
+      background: radial-gradient(circle at 35% 35%, #d9534f 0%, #b8322e 45%, #8b1e1b 85%, #631210 100%);
       border-radius: 50%;
       z-index: 5;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #fff2a8;
-      font-size: clamp(16px, 5vw, 22px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 
+        0 8px 18px rgba(50, 10, 10, 0.45),
+        inset 0 2px 4px rgba(255, 200, 200, 0.5),
+        inset 0 -3px 5px rgba(0, 0, 0, 0.5);
       transition: opacity 0.4s ease;
+      border: 1px solid rgba(220, 80, 75, 0.4);
+    }
+
+    .seal-inner-ring {
+      width: 82%;
+      height: 82%;
+      border-radius: 50%;
+      border: 2px solid #781816;
+      box-shadow: 
+        inset 0 1px 3px rgba(255, 180, 180, 0.4),
+        0 1px 2px rgba(255, 200, 200, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at 40% 40%, #c43b37 0%, #9e2522 70%, #781816 100%);
+    }
+
+    .seal-heart-svg {
+      width: clamp(26px, 8vw, 34px);
+      height: clamp(26px, 8vw, 34px);
+      filter: drop-shadow(0.5px 1px 0px rgba(255, 190, 190, 0.4)) 
+              drop-shadow(-0.5px -0.5px 0px rgba(40, 5, 5, 0.7));
+    }
+
+    /* Dried Floral Accent Overlay */
+    .flower-accent {
+      position: absolute;
+      top: -35px;
+      right: -25px;
+      width: 110px;
+      height: 140px;
+      pointer-events: none;
+      z-index: 6;
+      opacity: 0.9;
+      filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.18));
     }
 
     .click-hint {
@@ -139,22 +241,28 @@
       bottom: -45px;
       width: 100%;
       text-align: center;
-      color: var(--accent-color);
+      color: #735733;
+      font-weight: bold;
       font-size: clamp(0.75rem, 2.5vw, 0.95rem);
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 0.4; }
+      0%, 100% { opacity: 0.5; }
       50% { opacity: 1; }
     }
 
+    /* Opening Trigger Animations */
     .container.open .wax-seal { opacity: 0; }
     .container.open .flap { transform: rotateX(180deg); z-index: 1; }
     .container.open .letter { transform: translateY(-63%); }
+    .container.open .invited-text {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-    /* ---------------- FLOWER RAIN EFFECT ---------------- */
+    /* ---------------- DENSE FLOWER RAIN SYSTEM ---------------- */
     #flower-container {
       position: fixed;
       inset: 0;
@@ -165,31 +273,30 @@
 
     .petal {
       position: absolute;
-      background: radial-gradient(circle at 30% 30%, #ffd1dc, #f8a5c2);
+      background: radial-gradient(circle at 30% 30%, #fffbf0, #ebd9be, #d1a76e);
       border-radius: 150% 0 150% 0;
-      opacity: 0.8;
+      opacity: 0.85;
       animation: fall linear forwards;
     }
 
     @keyframes fall {
       0% {
-        transform: translateY(-10vh) rotate(0deg) scale(0.8);
+        transform: translateY(-10vh) translateX(0px) rotate(0deg) scale(0.6);
         opacity: 0;
       }
-      10% {
-        opacity: 0.9;
-      }
+      10% { opacity: 0.9; }
+      50% { transform: translateY(50vh) translateX(30px) rotate(360deg) scale(1.1); }
       100% {
-        transform: translateY(105vh) rotate(720deg) scale(1.2);
-        opacity: 0.2;
+        transform: translateY(105vh) translateX(-20px) rotate(720deg) scale(0.9);
+        opacity: 0.1;
       }
     }
 
-    /* ---------------- FADE TRANSITION OVERLAY ---------------- */
+    /* Page Fade Overlay */
     #fade-overlay {
       position: fixed;
       inset: 0;
-      background-color: var(--bg-color);
+      background: #ebe0cf;
       opacity: 0;
       pointer-events: none;
       z-index: 10;
@@ -207,23 +314,51 @@
   <div class="wrapper" id="envelopeWrapper">
     <div class="container" id="envelopeContainer" onclick="openEnvelope()">
       <div class="envelope-back"></div>
+      
+      <!-- Whitish Card Inside -->
       <div class="letter">
-        <h1>You Are Cordially Invited</h1>
-        <p>We are delighted to share this special moment with you. Please wait a moment...</p>
+        <h1 class="invited-text" id="invitedText">You Are Cordially Invited</h1>
       </div>
-      <div class="pocket"></div>
-      <div class="flap"></div>
-      <div class="wax-seal">✦</div>
+      
+      <div class="pocket embossed-gold-pattern"></div>
+      <div class="flap embossed-gold-pattern"></div>
+      
+      <!-- Red Terracotta Wax Seal with Filigree Heart -->
+      <div class="wax-seal">
+        <div class="seal-inner-ring">
+          <svg class="seal-heart-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 50 88 C 20 68 5 48 5 30 C 5 13 18 5 32 5 C 42 5 47 10 50 16 C 53 10 58 5 68 5 C 82 5 95 13 95 30 C 95 48 80 68 50 88 Z" 
+                  stroke="#470908" stroke-width="4.5" fill="#a82825"/>
+            <path d="M 32 15 C 24 15 15 20 15 30 C 15 42 28 56 46 72" stroke="#470908" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 68 15 C 76 15 85 20 85 30 C 85 42 72 56 54 72" stroke="#470908" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 25 25 C 32 28 35 36 28 42 C 22 46 18 38 25 32" stroke="#470908" stroke-width="2" fill="none"/>
+            <path d="M 75 25 C 68 28 65 36 72 42 C 78 46 82 38 75 32" stroke="#470908" stroke-width="2" fill="none"/>
+            <path d="M 50 25 C 44 35 40 48 48 58 C 52 62 50 70 42 66" stroke="#470908" stroke-width="2" fill="none"/>
+            <path d="M 50 25 C 56 35 60 48 52 58 C 48 62 50 70 58 66" stroke="#470908" stroke-width="2" fill="none"/>
+            <path d="M 50 32 C 42 38 42 46 50 52 C 58 46 58 38 50 32 Z" stroke="#470908" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Dried Branch Decorative Overlay -->
+      <svg class="flower-accent" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M90 10 Q50 60 10 110" stroke="#7a6245" stroke-width="2" stroke-linecap="round"/>
+        <path d="M70 35 Q50 30 40 20" stroke="#7a6245" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M50 60 Q35 55 25 45" stroke="#7a6245" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="40" cy="20" r="3.5" fill="#faf6ee" stroke="#7a6245" stroke-width="0.5"/>
+        <circle cx="25" cy="45" r="4" fill="#faf6ee" stroke="#7a6245" stroke-width="0.5"/>
+        <circle cx="75" cy="28" r="3" fill="#faf6ee" stroke="#7a6245" stroke-width="0.5"/>
+        <circle cx="60" cy="48" r="3.5" fill="#faf6ee" stroke="#7a6245" stroke-width="0.5"/>
+      </svg>
     </div>
     <div class="click-hint" id="hint">CLICK TO OPEN</div>
   </div>
 
   <div id="flower-container"></div>
-
   <div id="fade-overlay"></div>
 
   <script>
-    const MAIN_PAGE_URL = "main.html"; // Redirect target
+    const MAIN_PAGE_URL = "main.html";
     let isOpened = false;
 
     function openEnvelope() {
@@ -233,48 +368,74 @@
       const container = document.getElementById('envelopeContainer');
       const hint = document.getElementById('hint');
       const fadeOverlay = document.getElementById('fade-overlay');
+      const invitedText = document.getElementById('invitedText');
 
-      // 1. Open Envelope
+      // 1. Open Envelope Animation
       container.classList.add('open');
       hint.style.display = 'none';
 
-      // 2. Start Flower Rain
+      // 2. Add Gold Lightning Effect 1 Second AFTER Text Appears (Total 3.2s from click)
       setTimeout(() => {
-        startFlowerRain();
-      }, 1200);
+        invitedText.classList.add('gold-lightning');
+      }, 3200);
 
-      // 3. Smoothly fade out screen
+      // Start flower rain
+      setTimeout(() => {
+        startContinuousFlowerRain();
+      }, 800);
+
+      // Smooth transition to main.html
       setTimeout(() => {
         fadeOverlay.classList.add('active');
-      }, 3500);
+      }, 5200);
 
-      // 4. Redirect to main.html
       setTimeout(() => {
         window.location.href = MAIN_PAGE_URL;
-      }, 5000);
+      }, 6700);
     }
 
-    function startFlowerRain() {
+    function createPetal() {
       const container = document.getElementById('flower-container');
-      const petalCount = 35;
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
 
-      for (let i = 0; i < petalCount; i++) {
-        setTimeout(() => {
-          const petal = document.createElement('div');
-          petal.classList.add('petal');
+      const size = Math.random() * 14 + 8;
+      const left = Math.random() * 100;
+      const duration = Math.random() * 4 + 3.5;
+      const delay = Math.random() * 0.5;
 
-          const size = Math.random() * 12 + 10;
-          const left = Math.random() * 100;
-          const duration = Math.random() * 4 + 4;
+      petal.style.width = `${size}px`;
+      petal.style.height = `${size * 1.35}px`;
+      petal.style.left = `${left}vw`;
+      petal.style.animationDuration = `${duration}s`;
+      petal.style.animationDelay = `${delay}s`;
 
-          petal.style.width = `${size}px`;
-          petal.style.height = `${size * 1.4}px`;
-          petal.style.left = `${left}vw`;
-          petal.style.animationDuration = `${duration}s`;
+      container.appendChild(petal);
 
-          container.appendChild(petal);
-        }, i * 150);
+      setTimeout(() => {
+        petal.remove();
+      }, (duration + delay) * 1000);
+    }
+
+    function startContinuousFlowerRain() {
+      for (let i = 0; i < 45; i++) {
+        setTimeout(createPetal, i * 80);
       }
+
+      setTimeout(() => {
+        for (let i = 0; i < 35; i++) {
+          setTimeout(createPetal, i * 100);
+        }
+      }, 1200);
+
+      const continuousRain = setInterval(() => {
+        createPetal();
+        createPetal();
+      }, 150);
+
+      setTimeout(() => {
+        clearInterval(continuousRain);
+      }, 5500);
     }
   </script>
 
