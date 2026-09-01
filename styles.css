@@ -753,3 +753,10 @@ h1, h2, h3 {
         height: 30%; /* Scaled down square size for small devices */
     }
 }
+@media (max-width: 768px) {
+    .hero {
+        min-height: 70vh; /* Reduces height so less vertical cropping occurs */
+        background-size: cover; 
+        background-position: center top; /* Focuses on faces near the top of the photo */
+    }
+}
