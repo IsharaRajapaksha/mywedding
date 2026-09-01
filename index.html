@@ -382,6 +382,34 @@
   opacity: 0.9;
 
 }
+
+/* --- PETAL SPEED CONTROL --- */
+.petal {
+  position: absolute;
+  background: radial-gradient(circle at 30% 30%, #fffbf0, #ebd9be, #d1a76e);
+  border-radius: 150% 0 150% 0;
+  opacity: 0.75;
+
+  /* Change animation speed here:
+    - Slower fall (gentle breeze): 6s to 8s
+    - Default speed: 4s to 5s
+    - Faster fall: 2s to 3s
+  */
+  animation: fall 6s linear forwards;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) translateX(0px) rotate(0deg) scale(0.6);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  50% { transform: translateY(50vh) translateX(20px) rotate(180deg) scale(0.9); }
+  100% {
+    transform: translateY(105vh) translateX(-15px) rotate(360deg) scale(0.7);
+    opacity: 0;
+  }
+}
   </style>
 </head>
 <body>
