@@ -1,164 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heshani & Ishara - Wedding Invitation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-	<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're Invited!</title>
+  <style>
+    :root {
+      --bg-color: #f7f4ef;
+      --gold-main: linear-gradient(135deg, #e6ca65 0%, #bf953f 50%, #aa771c 100%);
+      --text-color: #3e3228;
+      --accent-color: #8a631c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* ---------------- ENVELOPE STAGE ---------------- */
+    .wrapper {
+      position: relative;
+      width: min(90vw, 440px);
+      aspect-ratio: 44 / 30;
+      z-index: 2;
+      transition: opacity 1.5s ease;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      transform-style: preserve-3d;
+    }
+
+    .envelope-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #5c4004;
+      border-radius: 8px;
+      box-shadow: 0 15px 35px rgba(138, 99, 28, 0.25);
+      z-index: 1;
+    }
+
+    .letter {
+      position: absolute;
+      top: 5%;
+      left: 4.5%;
+      width: 91%;
+      height: 90%;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: clamp(12px, 4vw, 25px);
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      border: 1px solid #f0e6d2;
+      z-index: 2;
+      transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1) 1.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .letter h1 {
+      font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+      color: var(--accent-color);
+      margin-bottom: 8px;
+      font-weight: normal;
+      letter-spacing: 0.5px;
+    }
+
+    .letter p {
+      font-size: clamp(0.78rem, 3vw, 0.98rem);
+      color: var(--text-color);
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    .pocket {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--gold-main);
+      border-radius: 8px;
+      clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 50%);
+      z-index: 3;
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: #aa771c;
+      border-radius: 8px;
+      clip-path: polygon(0 0, 100% 0, 50% 55%);
+      transform-origin: top;
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 4;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    }
+
+    .wax-seal {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(38px, 12vw, 52px);
+      height: clamp(38px, 12vw, 52px);
+      background: radial-gradient(circle, #b8860b 0%, #745106 100%);
+      border-radius: 50%;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff2a8;
+      font-size: clamp(16px, 5vw, 22px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: opacity 0.4s ease;
+    }
+
+    .click-hint {
+      position: absolute;
+      bottom: -45px;
+      width: 100%;
+      text-align: center;
+      color: var(--accent-color);
+      font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+      letter-spacing: 1.5px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    .container.open .wax-seal { opacity: 0; }
+    .container.open .flap { transform: rotateX(180deg); z-index: 1; }
+    .container.open .letter { transform: translateY(-63%); }
+
+    /* ---------------- FLOWER RAIN EFFECT ---------------- */
+    #flower-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      background: radial-gradient(circle at 30% 30%, #ffd1dc, #f8a5c2);
+      border-radius: 150% 0 150% 0;
+      opacity: 0.8;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(105vh) rotate(720deg) scale(1.2);
+        opacity: 0.2;
+      }
+    }
+
+    /* ---------------- FADE TRANSITION OVERLAY ---------------- */
+    #fade-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: var(--bg-color);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    #fade-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-content">
-            <p>We are getting married</p>
-            <h1  class="script-font" style="font-size: 6rem; margin-bottom: 10px;">Heshani <br>& <br> Ishara</h1>
-            <p>Save Our Date</p>
-        </div>
-    </header>
+  <div class="wrapper" id="envelopeWrapper">
+    <div class="container" id="envelopeContainer" onclick="openEnvelope()">
+      <div class="envelope-back"></div>
+      <div class="letter">
+        <h1>You Are Cordially Invited</h1>
+        <p>We are delighted to share this special moment with you. Please wait a moment...</p>
+      </div>
+      <div class="pocket"></div>
+      <div class="flap"></div>
+      <div class="wax-seal">✦</div>
+    </div>
+    <div class="click-hint" id="hint">CLICK TO OPEN</div>
+  </div>
 
-    <main class="container">
+  <div id="flower-container"></div>
 
-        <section class="card">
-            <p class="greeting">
-                Together with our families, we invite you to share in our joy as we exchange wedding vows and begin our new life together. Your presence and blessings on our special day would mean the world to us.
-            </p>
+  <div id="fade-overlay"></div>
 
-			<h2 class="script-font" style="font-size: 3rem; margin-bottom: 10px;">Counting Down to the Big Day</h2>
-            <div class="countdown reveal-on-scroll" id="countdown">
-                <div class="time-box"><span id="days">00</span><label>Days</label></div>
-                <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
-                <div class="time-box"><span id="minutes">00</span><label>Mins</label></div>
-                <div class="time-box"><span id="seconds">00</span><label>Secs</label></div>
-            </div>
-        </section>
-		
-		<section class="card">
-			<div class="couple-grid">
-				<!-- Title placed inside grid -->
-				<h2 class="script-font couple-title">The Bride & Groom</h2>
-				
-				<!-- Bride Card -->
-				<div class="couple-card bride-card reveal-on-scroll">
-					<h3>Heshani</h3>
-					<p class="parents-title">Daughter of</p>
-					<p>Mr. K. W. G. T. R. B. Koralewaththa</p>
-					<p>& Mrs. R. M. P. Herath</p>
-				</div>
+  <script>
+    const MAIN_PAGE_URL = "main.html"; // Redirect target
+    let isOpened = false;
 
-				<!-- Clipart Divider -->
-				<div class="clipart-divider reveal-on-scroll">
-					<div class="clipart-container">
-						<img src="clip.jpg" alt="Wedding Rings Clipart" class="clipart-img">
-					</div>
-				</div>
+    function openEnvelope() {
+      if (isOpened) return;
+      isOpened = true;
 
-				<!-- Groom Card -->
-				<div class="couple-card groom-card reveal-on-scroll">
-					<h3>Ishara</h3>
-					<p class="parents-title">Son of</p>
-					<p>Mr. R. M. M. B. Rajapaksha</p>
-					<p>& Mrs. A. A. R. K. Athauda</p>
-				</div>
-			</div>
-		</section>
+      const container = document.getElementById('envelopeContainer');
+      const hint = document.getElementById('hint');
+      const fadeOverlay = document.getElementById('fade-overlay');
 
-        <section class="card">
-            <h2 class="script-font" style="font-size: 3rem; margin-bottom: 10px;">Wedding Date & Time</h2>
-            <p style="color: var(--text-muted); margin-top: 5px;">Join us on our special day</p>
+      // 1. Open Envelope
+      container.classList.add('open');
+      hint.style.display = 'none';
 
-            <div class="calendar-box reveal-on-scroll">
-                <div class="calendar-header">OCTOBER 2026</div>
-                <div class="calendar-grid">
-                    <div class="day-name">S</div>
-                    <div class="day-name">M</div>
-                    <div class="day-name">T</div>
-                    <div class="day-name">W</div>
-                    <div class="day-name">T</div>
-                    <div class="day-name">F</div>
-                    <div class="day-name">S</div>
-                    
-                    <!-- October 1, 2026 starts on Thursday -->
-                    <div class="date" style="grid-column: 5;">1</div>
-                    <div class="date">2</div><div class="date">3</div>
-                    <div class="date">4</div><div class="date">5</div><div class="date">6</div><div class="date">7</div><div class="date">8</div><div class="date">9</div><div class="date">10</div>
-                    <div class="date">11</div><div class="date">12</div><div class="date">13</div><div class="date">14</div><div class="date">15</div><div class="date">16</div><div class="date">17</div>
-                    <div class="date wedding-day">18</div><div class="date">19</div><div class="date">20</div><div class="date">21</div><div class="date">22</div><div class="date">23</div><div class="date">24</div>
-                    <div class="date">25</div><div class="date">26</div><div class="date">27</div><div class="date">28</div><div class="date">29</div><div class="date">30</div><div class="date">31</div>
-                </div>
-            </div>
+      // 2. Start Flower Rain
+      setTimeout(() => {
+        startFlowerRain();
+      }, 1200);
 
-            <div class="ceremony-badge">
-                Poruwa Ceremony: 09:15 AM
-            </div>
-        </section>
+      // 3. Smoothly fade out screen
+      setTimeout(() => {
+        fadeOverlay.classList.add('active');
+      }, 3500);
 
-        <section class="card">
-            <h2 class="script-font" style="font-size: 3rem; margin-bottom: 10px;">Ceremony Venue</h2>
-            <p style="font-weight: 500; font-size: 1.1rem; margin-top: 10px;">Asliya Goldern Cassandra</p>
-            <p style="color: var(--text-muted);">Dambokka, Kurunegala</p>
-			<p style="color: var(--text-muted);">Hall: Lotus Grand Ballroom</p>
-			
-			<!-- Photo Gallery Section -->
-			<div class="photo-gallery">
-				<div class="photo-frame reveal-on-scroll">
-					<img src="r1.jpg" alt="Memory Photo 1" class="gallery-img">
-				</div>
-				<div class="photo-frame reveal-on-scroll">
-					<img src="r2.jpg" alt="Memory Photo 2" class="gallery-img">
-				</div>
-				<div class="photo-frame reveal-on-scroll">
-					<img src="r3.jpg" alt="Memory Photo 3" class="gallery-img">
-				</div>
-			</div>
+      // 4. Redirect to main.html
+      setTimeout(() => {
+        window.location.href = MAIN_PAGE_URL;
+      }, 5000);
+    }
 
-            <div class="map-container">
-                
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.282441303506!2d80.33976857500139!3d7.433966292576842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae33ba4acb686e9%3A0x4133679c8fdf897c!2sAsliya%20Golden%20Cassandra!5e0!3m2!1sen!2skr!4v1788179444123!5m2!1sen!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-				
-            </div>
-        </section>
+    function startFlowerRain() {
+      const container = document.getElementById('flower-container');
+      const petalCount = 35;
 
-        <section class="card">
-            <h2  class="script-font" style="font-size: 3rem; margin-bottom: 10px;">RSVP</h2>
-            <p style="color: var(--text-muted); margin-bottom: 25px;">Please confirm your attendance</p>
+      for (let i = 0; i < petalCount; i++) {
+        setTimeout(() => {
+          const petal = document.createElement('div');
+          petal.classList.add('petal');
 
-            <form id="rsvpForm">
-                <div class="form-group">
-                    <label for="fullName">Your Name</label>
-                    <input type="text" id="fullName" placeholder="Enter your full name" required>
-                </div>
+          const size = Math.random() * 12 + 10;
+          const left = Math.random() * 100;
+          const duration = Math.random() * 4 + 4;
 
-                <div class="form-group">
-                    <label for="attendance">Will you be attending?</label>
-                    <select id="attendance" required>
-                        <option value="" disabled selected>Select an option</option>
-                        <option value="attending">Joyfully Accept</option>
-                        <option value="not_attending">Regretfully Decline</option>
-                        <!--option value="attending_with_guest">Attending with Guest (+1)</option> -->
-                    </select>
-                </div>
+          petal.style.width = `${size}px`;
+          petal.style.height = `${size * 1.4}px`;
+          petal.style.left = `${left}vw`;
+          petal.style.animationDuration = `${duration}s`;
 
-                <div class="form-group">
-                    <label for="specialNeeds">Special Needs / Dietary Requirements</label>
-                    <textarea id="specialNeeds" rows="3" placeholder="Vegetarian, allergies, accessibility needs, etc."></textarea>
-                </div>
+          container.appendChild(petal);
+        }, i * 150);
+      }
+    }
+  </script>
 
-                <button type="submit" class="btn-submit">Confirm RSVP</button>
-            </form>
-        </section>
-
-        <section class="card">
-            <h2 class="script-font" style="font-size: 3rem; color: var(--accent-gold);">Thank You</h2>
-            <p class="closing-message">
-                "Your love, support, and presence mean the world to us as we embark on this beautiful new journey together. We cannot wait to celebrate our love with you!"
-            </p>
-            <p style="margin-top: 15px; font-weight: 600; color: var(--text-dark);">— With love, Heshani & Ishara —</p>
-        </section>
-
-    </main>
-
-    <script src="script.js"></script>
 </body>
 </html>

@@ -60,7 +60,7 @@ h1, h2, h3 {
     align-items: center;
     justify-content: center;		
 	background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
-                url('cover1.jpg') center/cover no-repeat;
+                url('cover.jpg') center/cover no-repeat;
     color: var(--white);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     padding: 20px;
