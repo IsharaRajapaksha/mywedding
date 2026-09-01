@@ -13,7 +13,7 @@
     <header class="hero">
         <div class="hero-content">
             <p>We are getting married</p>
-            <h1  class="script-font" style="font-size: 8rem; margin-bottom: 10px;">Heshani & Ishara</h1>
+            <h1  class="script-font" style="font-size: 6rem; margin-bottom: 10px;">Heshani <br>& <br> Ishara</h1>
             <p>Save Our Date</p>
         </div>
     </header>
@@ -26,7 +26,7 @@
             </p>
 
 			<h2 class="script-font" style="font-size: 3rem; margin-bottom: 10px;">Counting Down to the Big Day</h2>
-            <div class="countdown" id="countdown">
+            <div class="countdown reveal-on-scroll" id="countdown">
                 <div class="time-box"><span id="days">00</span><label>Days</label></div>
                 <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
                 <div class="time-box"><span id="minutes">00</span><label>Mins</label></div>
@@ -40,22 +40,22 @@
 				<h2 class="script-font couple-title">The Bride & Groom</h2>
 				
 				<!-- Bride Card -->
-				<div class="couple-card bride-card">
+				<div class="couple-card bride-card reveal-on-scroll">
 					<h3>Heshani</h3>
 					<p class="parents-title">Daughter of</p>
 					<p>Mr. K. W. G. T. R. B. Koralewaththa</p>
-					<p>& Mrs. R. M. Prasadini Rathnayaka</p>
+					<p>& Mrs. R. M. P. Herath</p>
 				</div>
 
 				<!-- Clipart Divider -->
-				<div class="clipart-divider">
+				<div class="clipart-divider reveal-on-scroll">
 					<div class="clipart-container">
 						<img src="clip.jpg" alt="Wedding Rings Clipart" class="clipart-img">
 					</div>
 				</div>
 
 				<!-- Groom Card -->
-				<div class="couple-card groom-card">
+				<div class="couple-card groom-card reveal-on-scroll">
 					<h3>Ishara</h3>
 					<p class="parents-title">Son of</p>
 					<p>Mr. R. M. M. B. Rajapaksha</p>
@@ -68,7 +68,7 @@
             <h2 class="script-font" style="font-size: 3rem; margin-bottom: 10px;">Wedding Date & Time</h2>
             <p style="color: var(--text-muted); margin-top: 5px;">Join us on our special day</p>
 
-            <div class="calendar-box">
+            <div class="calendar-box reveal-on-scroll">
                 <div class="calendar-header">OCTOBER 2026</div>
                 <div class="calendar-grid">
                     <div class="day-name">S</div>
@@ -98,6 +98,20 @@
             <h2 class="script-font" style="font-size: 3rem; margin-bottom: 10px;">Ceremony Venue</h2>
             <p style="font-weight: 500; font-size: 1.1rem; margin-top: 10px;">Asliya Goldern Cassandra</p>
             <p style="color: var(--text-muted);">Dambokka, Kurunegala</p>
+			<p style="color: var(--text-muted);">Hall: Lotus Grand Ballroom</p>
+			
+			<!-- Photo Gallery Section -->
+			<div class="photo-gallery">
+				<div class="photo-frame reveal-on-scroll">
+					<img src="r1.jpg" alt="Memory Photo 1" class="gallery-img">
+				</div>
+				<div class="photo-frame reveal-on-scroll">
+					<img src="r2.jpg" alt="Memory Photo 2" class="gallery-img">
+				</div>
+				<div class="photo-frame reveal-on-scroll">
+					<img src="r3.jpg" alt="Memory Photo 3" class="gallery-img">
+				</div>
+			</div>
 
             <div class="map-container">
                 
@@ -112,7 +126,7 @@
 
             <form id="rsvpForm">
                 <div class="form-group">
-                    <label for="fullName">Your Full Name</label>
+                    <label for="fullName">Your Name</label>
                     <input type="text" id="fullName" placeholder="Enter your full name" required>
                 </div>
 
@@ -122,7 +136,7 @@
                         <option value="" disabled selected>Select an option</option>
                         <option value="attending">Joyfully Accept</option>
                         <option value="not_attending">Regretfully Decline</option>
-                        <option value="attending_with_guest">Attending with Guest (+1)</option>
+                        <!--option value="attending_with_guest">Attending with Guest (+1)</option> -->
                     </select>
                 </div>
 
