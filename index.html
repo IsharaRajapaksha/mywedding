@@ -79,7 +79,7 @@
       z-index: 1;
     }
 
-    /* Whitish Paper Card Inside */
+    /* Whitish Paper Card Inside (Moves UP together with the text inside) */
     .letter {
       position: absolute;
       top: 5%;
@@ -100,35 +100,33 @@
       align-items: center;
     }
 
-    /* Initial Animated Text Entry */
+    /* Gold Color Text inside the letter card */
     .invited-text {
       font-size: clamp(1.25rem, 4.8vw, 1.65rem);
       font-weight: bold;
       letter-spacing: 0.8px;
       line-height: 1.3;
-      color: #78541a;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.8s ease-out 2.2s, transform 0.8s ease-out 2.2s;
+      color: #9e7527; /* Rich Gold Base */
+      transition: filter 0.4s ease;
     }
 
-    /* Active Gold Sweep Animation triggered after delay */
+    /* Bright Gold Lightning Sweep Class */
     .invited-text.gold-lightning {
       background: linear-gradient(
         120deg,
-        #78541a 0%,
-        #a67c2e 30%,
+        #87601c 0%,
+        #b88c35 30%,
         #ffffff 48%,
-        #fff5bf 52%,
-        #a67c2e 70%,
-        #78541a 100%
+        #fff7d4 52%,
+        #b88c35 70%,
+        #87601c 100%
       );
       background-size: 250% auto;
       color: transparent;
       -webkit-background-clip: text;
       background-clip: text;
       filter: drop-shadow(0px 1px 1px rgba(255, 255, 255, 0.8))
-              drop-shadow(0px 0px 10px rgba(212, 175, 55, 0.55));
+              drop-shadow(0px 0px 10px rgba(212, 175, 55, 0.6));
       animation: sweepGold 2.2s linear infinite;
     }
 
@@ -257,10 +255,6 @@
     .container.open .wax-seal { opacity: 0; }
     .container.open .flap { transform: rotateX(180deg); z-index: 1; }
     .container.open .letter { transform: translateY(-63%); }
-    .container.open .invited-text {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     /* ---------------- DENSE FLOWER RAIN SYSTEM ---------------- */
     #flower-container {
@@ -315,7 +309,7 @@
     <div class="container" id="envelopeContainer" onclick="openEnvelope()">
       <div class="envelope-back"></div>
       
-      <!-- Whitish Card Inside -->
+      <!-- Whitish Paper Card Inside -->
       <div class="letter">
         <h1 class="invited-text" id="invitedText">You Are Cordially Invited</h1>
       </div>
@@ -370,14 +364,14 @@
       const fadeOverlay = document.getElementById('fade-overlay');
       const invitedText = document.getElementById('invitedText');
 
-      // 1. Open Envelope Animation
+      // 1. Open Envelope & Raise Letter together with text inside
       container.classList.add('open');
       hint.style.display = 'none';
 
-      // 2. Add Gold Lightning Effect 1 Second AFTER Text Appears (Total 3.2s from click)
+      // 2. Add Bright Gold Lightning Sweep 1s after letter is fully raised (2.4s + 1s = 3.4s)
       setTimeout(() => {
         invitedText.classList.add('gold-lightning');
-      }, 3200);
+      }, 3400);
 
       // Start flower rain
       setTimeout(() => {
@@ -387,11 +381,11 @@
       // Smooth transition to main.html
       setTimeout(() => {
         fadeOverlay.classList.add('active');
-      }, 5200);
+      }, 5500);
 
       setTimeout(() => {
         window.location.href = MAIN_PAGE_URL;
-      }, 6700);
+      }, 7000);
     }
 
     function createPetal() {
