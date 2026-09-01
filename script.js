@@ -71,3 +71,23 @@ document.getElementById("rsvpForm").addEventListener("submit", function(event) {
         submitBtn.disabled = false;
     });
 });
+
+// Intersection Observer for scroll-triggered bouncing effects
+document.addEventListener("DOMContentLoaded", function() {
+    const animatedElements = document.querySelectorAll('.reveal-on-scroll');
+
+    const observer = new IntersectionObserver((entries, observerInstance) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add bounce animation class when element enters viewport
+                entry.target.classList.add('bounce-in');
+                // Unobserve after animating so it stays visible
+                observerInstance.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15 // Triggers when 15% of the element is visible
+    });
+
+    animatedElements.forEach(el => observer.observe(el));
+});

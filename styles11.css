@@ -1,0 +1,290 @@
+:root {
+    --bg-cream: #FDFBF7;
+    --card-cream: #F7F3EC;
+    --accent-gold: #C5A059;
+    --text-dark: #3D352E;
+    --text-muted: #7A7267;
+    --border-gold: #E2D3B8;
+    --white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    line-height: 1.6;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+}
+
+.script-font {
+    font-family: 'Great Vibes', cursive;
+    color: var(--accent-gold);
+    font-weight: 400;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.card {
+    background: var(--card-cream);
+    border: 1px solid var(--border-gold);
+    border-radius: 12px;
+    padding: 40px 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+                url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    color: var(--white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.greeting {
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin: 0 auto 30px auto;
+    color: var(--text-muted);
+}
+
+/* Countdown */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.time-box {
+    background: var(--white);
+    border: 1px solid var(--border-gold);
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 80px;
+}
+
+.time-box span {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    font-family: 'Playfair Display', serif;
+}
+
+.time-box label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+/* Couple Section */
+.couple-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.couple-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border-gold);
+}
+
+.couple-card h3 {
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    margin-bottom: 10px;
+}
+
+.parents-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+/* Calendar */
+.calendar-box {
+    background: var(--white);
+    max-width: 350px;
+    margin: 20px auto;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid var(--border-gold);
+}
+
+.calendar-header {
+    font-weight: 600;
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.day-name {
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.date {
+    padding: 8px 0;
+    border-radius: 50%;
+}
+
+.wedding-day {
+    background: var(--accent-gold);
+    color: var(--white);
+    font-weight: bold;
+    position: relative;
+}
+
+.wedding-day::after {
+    content: '♥';
+    position: absolute;
+    top: -6px;
+    right: 2px;
+    font-size: 0.6rem;
+}
+
+.ceremony-badge {
+    display: inline-block;
+    background: var(--white);
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
+
+/* Map */
+.map-container {
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--border-gold);
+    margin-top: 20px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 300px;
+    border: 0;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-gold);
+    border-radius: 6px;
+    background: var(--white);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+}
+
+.btn-submit {
+    background: var(--accent-gold);
+    color: var(--white);
+    border: none;
+    padding: 14px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn-submit:hover {
+    background: #b08d48;
+}
+
+/* Footer Message */
+.closing-message {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .container { padding: 30px 15px; }
+    .card { padding: 25px 15px; }
+    .time-box { min-width: 65px; padding: 10px; }
+    .time-box span { font-size: 1.4rem; }
+}
